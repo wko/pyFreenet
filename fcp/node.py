@@ -2315,6 +2315,11 @@ class FCPNode:
             job.callback('successful', keys)
             job._putResult(keys)
             return
+        if hdr == 'ProbeError':
+            keys = ((msg['Type']))
+            job.callback("failed", keys)
+            job._putResult(FCPNodeTimeout(msg))
+            return
 
         if hdr == 'DataFound':
             if( job.kw.has_key( 'URI' )):
