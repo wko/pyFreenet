@@ -1327,6 +1327,7 @@ class FCPNode:
       Sends a ProbeRequest
 
       Keywords:
+          - Target - whether to send the probeRequest to a specific neighbor
           - async - whether to do this call asynchronously, and
             return a JobTicket object
           - callback - if given, this should be a callable which accepts 2
@@ -1342,7 +1343,7 @@ class FCPNode:
       return self._submitCmd(id, "ProbeRequest",
             Identifier=id,
             Type=requested_data,
-            HopsToLive=htl)
+            HopsToLive=htl, **kw)
 
     #@-node:listpeers
     #@+node:listpeernotes
