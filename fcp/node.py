@@ -1340,7 +1340,11 @@ class FCPNode:
                       a dict containing the response from node
       """
       id = self._getUniqueId()
-      return self._submitCmd(id, "ProbeRequest",
+      if kw.has_key('Target'):
+        requestType = "ProbeRequestWithTarget"
+      else:
+        requestType = "ProbeRequest"
+      return self._submitCmd(id, requestType,
             Identifier=id,
             Type=requested_data,
             HopsToLive=htl, **kw)
